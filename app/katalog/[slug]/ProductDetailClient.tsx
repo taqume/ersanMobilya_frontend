@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { FiArrowLeft, FiChevronLeft, FiChevronRight, FiHeart } from 'react-icons/fi';
+import { FiArrowLeft, FiChevronLeft, FiChevronRight, FiHeart, FiMaximize2, FiX, FiZoomIn, FiZoomOut } from 'react-icons/fi';
 import { addToFavorites, removeFromFavorites, isFavorite } from '@/lib/favorites';
 import { useFavoritesStore } from '@/lib/store/favorites';
 
@@ -18,6 +18,8 @@ interface ProductDetailClientProps {
 export default function ProductDetailClient({ name, images, categorySlug, productId, productSlug }: ProductDetailClientProps) {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [isFav, setIsFav] = useState(false);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [zoomLevel, setZoomLevel] = useState(1);
   const refreshFavorites = useFavoritesStore((state) => state.refresh);
 
   useEffect(() => {
@@ -64,9 +66,36 @@ export default function ProductDetailClient({ name, images, categorySlug, produc
     );
   };
 
+  const handleZoomIn = () => {
+    setZoomLevel((prev) => Math.min(prev + 0.5, 3));
+  };
+
+  const handleZoomOut = () => {
+    setZoomLevel((prev) => Math.max(prev - 0.5, 1));
+  };
+
+  const openFullscreen = () => {
+    setIsFullscreen(true);
+    setZoomLevel(1);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeFullscreen = () => {
+    setIsFullscreen(false);
+    setZoomLevel(1);
+    document.body.style.overflow = '';
+  };
+
+  useEffect(() => {
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen pt-24 overflow-x-hidden" style={{backgroundColor: 'rgba(19, 21, 33, 1)'}}>
-      <div className="container mx-auto px-4 py-8">
+    <>
+    <div className="min-h-screen pt-24" style={{backgroundColor: 'rgba(19, 21, 33, 1)'}}>
+      <div className="container mx-auto px-4 pb-4 md:pb-12">
         {/* Back Button */}
         <Link
           href="/katalog"
@@ -118,6 +147,15 @@ export default function ProductDetailClient({ name, images, categorySlug, produc
               />
             </div>
             
+            {/* Fullscreen/Maximize Button */}
+            <button
+              onClick={openFullscreen}
+              className="absolute top-3 md:top-6 right-3 md:right-6 w-10 h-10 md:w-12 md:h-12 rounded-full bg-black/60 backdrop-blur-sm text-white flex items-center justify-center hover:bg-[#FF6B00] transition-colors z-10 shadow-lg"
+              aria-label="Tam ekran"
+            >
+              <FiMaximize2 className="w-5 h-5 md:w-6 md:h-6" />
+            </button>
+
             {/* Navigation Arrows */}
             {images.length > 1 && (
               <>
@@ -144,48 +182,158 @@ export default function ProductDetailClient({ name, images, categorySlug, produc
             )}
           </div>
 
-          {/* Thumbnail Strip - Below Main Image */}
+          {/* Thumbnail Gallery - Below Main Image */}
           {images.length > 1 && (
-            <div className="flex gap-3 md:gap-4 justify-start overflow-x-auto pb-2 px-2 hide-scrollbar">
-              {images.map((image, index) => (
-                <button
-                  key={index}
-                  onClick={() => setSelectedImageIndex(index)}
-                  className={`flex-shrink-0 w-20 h-20 md:w-28 md:h-28 lg:w-32 lg:h-32 rounded-lg md:rounded-xl overflow-hidden border-2 transition-all ${
-                    selectedImageIndex === index
-                      ? 'border-[#FF6B00] scale-105 shadow-lg shadow-[#FF6B00]/30'
-                      : 'border-white/10 hover:border-white/30'
-                  }`}
-                  style={{backgroundColor: 'rgba(25, 28, 45, 0.8)'}}
-                  aria-label={`Resim ${index + 1}`}
-                >
-                  <div className="relative w-full h-full overflow-hidden">
-                    <Image
-                      src={getThumbnailUrl(image)}
-                      alt={`${name} - ${index + 1}`}
-                      width={200}
-                      height={200}
-                      className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
-                      quality={95}
-                      unoptimized={false}
-                    />
-                  </div>
-                </button>
-              ))}
-            </div>
+            <>
+              {/* Mobile: Grid Layout */}
+              <div className="grid grid-cols-4 gap-2 py-3 md:hidden">
+                {images.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedImageIndex(index)}
+                    className={`aspect-square rounded-lg overflow-visible border-2 transition-all ${
+                      selectedImageIndex === index
+                        ? 'border-[#FF6B00] scale-105 shadow-lg shadow-[#FF6B00]/30'
+                        : 'border-white/10 hover:border-white/30'
+                    }`}
+                    style={{backgroundColor: 'rgba(25, 28, 45, 0.8)'}}
+                    aria-label={`Resim ${index + 1}`}
+                  >
+                    <div className="relative w-full h-full overflow-hidden rounded-lg">
+                      <Image
+                        src={getThumbnailUrl(image)}
+                        alt={`${name} - ${index + 1}`}
+                        width={200}
+                        height={200}
+                        className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
+                        quality={95}
+                        unoptimized={false}
+                      />
+                    </div>
+                  </button>
+                ))}
+              </div>
+
+              {/* Desktop: Horizontal Scroll */}
+              <div className="hidden md:flex gap-4 justify-start overflow-x-auto py-3 px-1 hide-scrollbar">
+                {images.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedImageIndex(index)}
+                    className={`flex-shrink-0 w-28 h-28 lg:w-32 lg:h-32 rounded-xl overflow-visible border-2 transition-all ${
+                      selectedImageIndex === index
+                        ? 'border-[#FF6B00] scale-105 shadow-lg shadow-[#FF6B00]/30'
+                        : 'border-white/10 hover:border-white/30'
+                    }`}
+                    style={{backgroundColor: 'rgba(25, 28, 45, 0.8)'}}
+                    aria-label={`Resim ${index + 1}`}
+                  >
+                    <div className="relative w-full h-full overflow-hidden rounded-xl">
+                      <Image
+                        src={getThumbnailUrl(image)}
+                        alt={`${name} - ${index + 1}`}
+                        width={200}
+                        height={200}
+                        className="object-cover w-full h-full transition-transform duration-300 hover:scale-110"
+                        quality={95}
+                        unoptimized={false}
+                      />
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </>
           )}
         </div>
       </div>
-
-      <style jsx>{`
-        .hide-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .hide-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </div>
+
+    {/* Fullscreen Modal */}
+    {isFullscreen && (
+      <div className="fixed inset-0 bg-black z-50 flex items-center justify-center">
+        {/* Close Button */}
+        <button
+          onClick={closeFullscreen}
+          className="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm text-white flex items-center justify-center hover:bg-[#FF6B00] transition-colors z-50"
+          aria-label="Kapat"
+        >
+          <FiX className="w-6 h-6" />
+        </button>
+
+        {/* Zoom Controls */}
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-3 z-50">
+          <button
+            onClick={handleZoomOut}
+            disabled={zoomLevel <= 1}
+            className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm text-white flex items-center justify-center hover:bg-[#FF6B00] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            aria-label="Uzaklaştır"
+          >
+            <FiZoomOut className="w-6 h-6" />
+          </button>
+          <div className="px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white flex items-center justify-center font-medium">
+            {Math.round(zoomLevel * 100)}%
+          </div>
+          <button
+            onClick={handleZoomIn}
+            disabled={zoomLevel >= 3}
+            className="w-12 h-12 rounded-full bg-white/10 backdrop-blur-sm text-white flex items-center justify-center hover:bg-[#FF6B00] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            aria-label="Yakınlaştır"
+          >
+            <FiZoomIn className="w-6 h-6" />
+          </button>
+        </div>
+
+        {/* Navigation Arrows */}
+        {images.length > 1 && (
+          <>
+            <button
+              onClick={handlePrevImage}
+              className="absolute left-4 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/10 backdrop-blur-sm text-white flex items-center justify-center hover:bg-[#FF6B00] transition-colors z-50"
+              aria-label="Önceki resim"
+            >
+              <FiChevronLeft className="w-8 h-8" />
+            </button>
+            <button
+              onClick={handleNextImage}
+              className="absolute right-4 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/10 backdrop-blur-sm text-white flex items-center justify-center hover:bg-[#FF6B00] transition-colors z-50"
+              aria-label="Sonraki resim"
+            >
+              <FiChevronRight className="w-8 h-8" />
+            </button>
+
+            {/* Image Counter */}
+            <div className="absolute top-4 left-1/2 -translate-x-1/2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm text-white text-sm font-medium z-50">
+              {selectedImageIndex + 1} / {images.length}
+            </div>
+          </>
+        )}
+
+        {/* Image Container with Zoom */}
+        <div 
+          className="w-full h-full flex items-center justify-center overflow-auto p-4"
+          style={{
+            touchAction: 'pan-x pan-y pinch-zoom',
+          }}
+        >
+          <div
+            className="relative transition-transform duration-300 ease-out"
+            style={{
+              transform: `scale(${zoomLevel})`,
+              transformOrigin: 'center center',
+            }}
+          >
+            <Image
+              src={images[selectedImageIndex]}
+              alt={name}
+              width={1200}
+              height={800}
+              className="max-w-full max-h-[90vh] object-contain"
+              priority
+            />
+          </div>
+        </div>
+      </div>
+    )}
+    </>
   );
 }

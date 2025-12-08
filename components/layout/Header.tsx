@@ -78,15 +78,26 @@ export function Header() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-white/10 rounded-b-lg" style={{backgroundColor: 'rgba(25, 28, 45, 0.98)'}}>
-            {navigation.map((item) => (
+          <div 
+            className="md:hidden py-4 border-t border-white/10 rounded-b-2xl backdrop-blur-xl shadow-2xl"
+            style={{
+              background: 'linear-gradient(180deg, rgba(25, 28, 45, 0.95) 0%, rgba(15, 18, 35, 0.98) 100%)',
+              borderTop: '1px solid rgba(255, 107, 0, 0.1)',
+              boxShadow: '0 10px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.05)'
+            }}
+          >
+            {navigation.map((item, index) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="block py-3 px-4 text-white hover:bg-[#FF6B00]/10 hover:text-[#FF6B00] font-medium transition-colors border-b border-white/5 last:border-b-0"
+                className="block py-4 px-6 text-white hover:bg-gradient-to-r hover:from-[#FF6B00]/20 hover:to-[#FF8533]/10 hover:text-[#FF6B00] font-medium transition-all duration-300 border-b border-white/5 last:border-b-0 relative group"
                 onClick={() => setMobileMenuOpen(false)}
+                style={{
+                  animationDelay: `${index * 50}ms`
+                }}
               >
-                {item.name}
+                <span className="relative z-10">{item.name}</span>
+                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-0 bg-[#FF6B00] transition-all duration-300 group-hover:h-full opacity-0 group-hover:opacity-100"></div>
               </Link>
             ))}
           </div>
