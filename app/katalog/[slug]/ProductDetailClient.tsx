@@ -20,7 +20,7 @@ export default function ProductDetailClient({ name, images, categorySlug, produc
   const [isFav, setIsFav] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [zoomLevel, setZoomLevel] = useState(1);
-  const refreshFavorites = useFavoritesStore((state) => state.refresh);
+  const loadFavorites = useFavoritesStore((state) => state.loadFavorites);
 
   useEffect(() => {
     setIsFav(isFavorite(productId));
@@ -51,7 +51,7 @@ export default function ProductDetailClient({ name, images, categorySlug, produc
       setIsFav(true);
     }
     
-    refreshFavorites();
+    loadFavorites();
   };
 
   const handlePrevImage = () => {
