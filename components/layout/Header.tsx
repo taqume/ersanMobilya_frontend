@@ -1,16 +1,25 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { FiMenu, FiX, FiHeart } from 'react-icons/fi';
 import { useFavoritesStore } from '@/lib/store/favorites';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const { favorites, loadFavorites } = useFavoritesStore();
 
   useEffect(() => {
     loadFavorites();
+
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
   }, [loadFavorites]);
 
   const navigation = [
@@ -21,14 +30,25 @@ export function Header() {
   ];
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
+    <header 
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+        scrolled 
+          ? 'bg-white/15 backdrop-blur-md shadow-lg rounded-b-2xl' 
+          : 'bg-transparent'
+      }`}
+    >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href="/" className="flex items-center">
-            <span className="text-2xl font-bold text-gray-900">
-              Ersan Mobilya
-            </span>
+          <Link href="/" className="flex items-center relative z-10">
+            <Image
+              src="/logo_withoutbg.png"
+              alt="Ersan Mobilya"
+              width={272}
+              height={90}
+              className="h-[50px] w-auto object-contain"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}
@@ -37,16 +57,17 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-700 hover:text-gray-900 font-medium transition-colors"
+                className="font-medium transition-all duration-200 relative group text-white hover:text-orange-300"
               >
                 {item.name}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 transition-all duration-200 group-hover:w-full"></span>
               </Link>
             ))}
 
             {/* Favorites Icon */}
             <Link
               href="/favoriler"
-              className="relative flex items-center text-gray-700 hover:text-red-600 transition-colors"
+              className="relative flex items-center transition-colors text-white hover:text-red-400"
             >
               <FiHeart className="w-6 h-6" />
               {favorites.length > 0 && (
@@ -60,7 +81,7 @@ export function Header() {
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-4">
             <Link href="/favoriler" className="relative">
-              <FiHeart className="w-6 h-6 text-gray-700" />
+              <FiHeart className={`w-6 h-6 ${scrolled ? 'text-gray-700' : 'text-white'}`} />
               {favorites.length > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
                   {favorites.length}
@@ -69,7 +90,7 @@ export function Header() {
             </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="text-gray-700"
+              className={scrolled ? 'text-gray-700' : 'text-white'}
             >
               {mobileMenuOpen ? (
                 <FiX className="w-6 h-6" />
@@ -82,12 +103,12 @@ export function Header() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t">
+          <div className="md:hidden py-4 border-t bg-white/95 backdrop-blur-md rounded-b-lg">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="block py-2 text-gray-700 hover:text-gray-900 font-medium"
+                className="block py-3 px-4 text-gray-700 hover:bg-gray-100 hover:text-orange-600 font-medium transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}

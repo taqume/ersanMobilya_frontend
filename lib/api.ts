@@ -138,7 +138,7 @@ export function getCloudinaryUrl(
   // Check if it's a Cloudinary URL
   if (!url.includes('cloudinary.com')) return url;
 
-  const { width, height, quality = 80, format = 'auto' } = options || {};
+  const { width, height, quality = 90, format = 'auto' } = options || {};
   
   // Split URL to inject transformations
   const parts = url.split('/upload/');

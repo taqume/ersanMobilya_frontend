@@ -1,0 +1,100 @@
+2025-12-07T22:53:39.065594Z  INFO tailwindcss_oxide::scanner: Provided sources:
+2025-12-07T22:53:39.066040Z  INFO tailwindcss_oxide::scanner: Source: PublicSourceEntry { base: "C:\\projects\\ersanMobilya_frontend", pattern: "**/*", negated: false }
+2025-12-07T22:53:39.066653Z  INFO tailwindcss_oxide::scanner: Optimized sources:
+2025-12-07T22:53:39.066670Z  INFO tailwindcss_oxide::scanner: Source: Auto { base: "C:\\projects\\ersanMobilya_frontend" }
+2025-12-07T22:53:39.068575Z  INFO scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-07T22:53:39.069600Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\.gitattributes"
+2025-12-07T22:53:39.070015Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\app"
+2025-12-07T22:53:39.070171Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\app\\globals.css"
+2025-12-07T22:53:39.070244Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\app\\layout.tsx"
+2025-12-07T22:53:39.070316Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\app\\page.tsx"
+2025-12-07T22:53:39.070452Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\components"
+2025-12-07T22:53:39.070625Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\components\\layout"
+2025-12-07T22:53:39.070757Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\components\\layout\\Footer.tsx"
+2025-12-07T22:53:39.070824Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\components\\layout\\Header.tsx"
+2025-12-07T22:53:39.070952Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\components\\providers"
+2025-12-07T22:53:39.071086Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\components\\providers\\ReactQueryProvider.tsx"
+2025-12-07T22:53:39.071196Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\eslint.config.mjs"
+2025-12-07T22:53:39.071331Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\lib"
+2025-12-07T22:53:39.071497Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\lib\\api.ts"
+2025-12-07T22:53:39.071582Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\lib\\favorites.ts"
+2025-12-07T22:53:39.071685Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\lib\\store"
+2025-12-07T22:53:39.071799Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\lib\\store\\favorites.ts"
+2025-12-07T22:53:39.071907Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\lib\\types"
+2025-12-07T22:53:39.072018Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\lib\\types\\strapi.ts"
+2025-12-07T22:53:39.072105Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\LICENSE"
+2025-12-07T22:53:39.072166Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\next.config.ts"
+2025-12-07T22:53:39.072355Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\package.json"
+2025-12-07T22:53:39.072410Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\postcss.config.mjs"
+2025-12-07T22:53:39.072500Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\public"
+2025-12-07T22:53:39.072616Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\public\\file.svg"
+2025-12-07T22:53:39.072713Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\public\\globe.svg"
+2025-12-07T22:53:39.072804Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\public\\next.svg"
+2025-12-07T22:53:39.072859Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\public\\vercel.svg"
+2025-12-07T22:53:39.072911Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\public\\window.svg"
+2025-12-07T22:53:39.072982Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\README_TR.md"
+2025-12-07T22:53:39.073046Z  INFO scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\tsconfig.json"
+2025-12-07T22:53:39.073110Z  INFO scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-07T22:53:39.073119Z  INFO extract_candidates: tailwindcss_oxide::scanner: enter
+2025-12-07T22:53:39.073125Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-07T22:53:39.073129Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 22 file(s)
+2025-12-07T22:53:39.073537Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\.gitattributes"
+2025-12-07T22:53:39.073546Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\LICENSE"
+2025-12-07T22:53:39.073566Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\public\\globe.svg"
+2025-12-07T22:53:39.073642Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\app\\layout.tsx"
+2025-12-07T22:53:39.073655Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\next.config.ts"
+2025-12-07T22:53:39.073651Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\components\\providers\\ReactQueryProvider.tsx"
+2025-12-07T22:53:39.073688Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\public\\next.svg"
+2025-12-07T22:53:39.073726Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\app\\page.tsx"
+2025-12-07T22:53:39.073746Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\public\\window.svg"
+2025-12-07T22:53:39.073778Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\package.json"
+2025-12-07T22:53:39.073798Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\public\\vercel.svg"
+2025-12-07T22:53:39.073799Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\postcss.config.mjs"
+2025-12-07T22:53:39.073824Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\components\\layout\\Footer.tsx"
+2025-12-07T22:53:39.073801Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\eslint.config.mjs"
+2025-12-07T22:53:39.073880Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\lib\\api.ts"
+2025-12-07T22:53:39.073878Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\lib\\favorites.ts"
+2025-12-07T22:53:39.073899Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\public\\file.svg"
+2025-12-07T22:53:39.073902Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\components\\layout\\Header.tsx"
+2025-12-07T22:53:39.073913Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\tsconfig.json"
+2025-12-07T22:53:39.073872Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\README_TR.md"
+2025-12-07T22:53:39.073934Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\lib\\store\\favorites.ts"
+2025-12-07T22:53:39.073969Z  INFO tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\lib\\types\\strapi.ts"
+2025-12-07T22:53:39.074128Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-07T22:53:39.074144Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: enter
+2025-12-07T22:53:39.074151Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: enter
+2025-12-07T22:53:39.074682Z  INFO extract_candidates:parse_all_blobs:extract: tailwindcss_oxide::scanner: exit
+2025-12-07T22:53:39.074703Z  INFO extract_candidates:parse_all_blobs: tailwindcss_oxide::scanner: exit
+2025-12-07T22:53:39.074711Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: enter
+2025-12-07T22:53:39.074716Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading 1 file(s)
+2025-12-07T22:53:39.074801Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: Reading "C:\\projects\\ersanMobilya_frontend\\app\\globals.css"
+2025-12-07T22:53:39.074814Z  INFO extract_candidates:read_all_files: tailwindcss_oxide::scanner: exit
+2025-12-07T22:53:39.074825Z  INFO extract_candidates:extract_css_variables: tailwindcss_oxide::scanner: enter
+2025-12-07T22:53:39.074830Z  INFO extract_candidates:extract_css_variables:extract: tailwindcss_oxide::scanner: enter
+2025-12-07T22:53:39.074909Z  INFO extract_candidates:extract_css_variables:extract: tailwindcss_oxide::scanner: exit
+2025-12-07T22:53:39.074923Z  INFO extract_candidates:extract_css_variables: tailwindcss_oxide::scanner: exit
+2025-12-07T22:53:39.075155Z  INFO extract_candidates: tailwindcss_oxide::scanner: exit
+2025-12-07T22:53:39.075493Z  INFO get_files: tailwindcss_oxide::scanner: enter
+2025-12-07T22:53:39.075511Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-07T22:53:39.076727Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\app"
+2025-12-07T22:53:39.076979Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\components"
+2025-12-07T22:53:39.077115Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\components\\layout"
+2025-12-07T22:53:39.077323Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\components\\providers"
+2025-12-07T22:53:39.077558Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\lib"
+2025-12-07T22:53:39.077762Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\lib\\store"
+2025-12-07T22:53:39.077942Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\lib\\types"
+2025-12-07T22:53:39.078367Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\public"
+2025-12-07T22:53:39.078679Z  INFO get_files:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-07T22:53:39.078752Z  INFO get_files: tailwindcss_oxide::scanner: exit
+2025-12-07T22:53:39.078876Z  INFO get_globs: tailwindcss_oxide::scanner: enter
+2025-12-07T22:53:39.078886Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: enter
+2025-12-07T22:53:39.079848Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\app"
+2025-12-07T22:53:39.080094Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\components"
+2025-12-07T22:53:39.080230Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\components\\layout"
+2025-12-07T22:53:39.080438Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\components\\providers"
+2025-12-07T22:53:39.080674Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\lib"
+2025-12-07T22:53:39.080863Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\lib\\store"
+2025-12-07T22:53:39.081045Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\lib\\types"
+2025-12-07T22:53:39.081472Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: Discovering "C:\\projects\\ersanMobilya_frontend\\public"
+2025-12-07T22:53:39.081781Z  INFO get_globs:scan_sources: tailwindcss_oxide::scanner: exit
+2025-12-07T22:53:39.084856Z  INFO get_globs: tailwindcss_oxide::scanner: exit
