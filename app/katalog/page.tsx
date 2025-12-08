@@ -1,6 +1,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { getCategories } from '@/lib/api';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Katalog | Ersan Mobilya - Yemek Odası Koleksiyonları',
+  description: 'Ersan Mobilya yemek odası katalogunu inceleyin. Modern ve klasik tasarımlardan oluşan geniş ürün yelpazemizi keşfedin.',
+  keywords: ['yemek odası katalog', 'mobilya modelleri', 'masa modelleri', 'sandalye çeşitleri'],
+};
 
 export default async function KatalogPage() {
   const categories = await getCategories();
@@ -15,9 +22,22 @@ export default async function KatalogPage() {
               <span className="text-white">Ürün </span>
               <span className="text-[#FF6B00]">Kataloğu</span>
             </h1>
-            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto mb-8">
               Kaliteli ve şık mobilya koleksiyonlarımızı keşfedin
             </p>
+            <div className="flex justify-center">
+              <a
+                href="/katalog.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#FF6B00] to-[#FF8533] text-white rounded-full font-semibold hover:shadow-2xl hover:shadow-[#FF6B00]/50 hover:scale-105 transition-all duration-300"
+              >
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Katalog İndir (PDF)
+              </a>
+            </div>
           </div>
 
           {/* Categories Grid */}

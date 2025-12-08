@@ -1,5 +1,12 @@
 import Image from 'next/image';
 import { FiAward, FiHeart, FiTrendingUp, FiUsers } from 'react-icons/fi';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Hakkımızda | Ersan Mobilya - Hikayemiz ve Değerlerimiz',
+  description: 'Ersan Mobilya, yıllardır yemek odası mobilyaları üretiminde uzmanlaşmış, kalite ve estetik anlayışıyla öne çıkan bir mobilya üreticisidir.',
+  keywords: ['ersan mobilya hakkında', 'mobilya üreticisi', 'firma bilgileri'],
+};
 
 export default function HakkimizdaPage() {
   return (
@@ -23,7 +30,7 @@ export default function HakkimizdaPage() {
             <div className="rounded-3xl overflow-hidden border border-white/5" style={{backgroundColor: 'rgba(25, 28, 45, 0.8)'}}>
               <div className="aspect-[4/3] relative">
                 <Image
-                  src="/hero-bg.png"
+                  src="/aboutUs.png"
                   alt="Ersan Mobilya Atölyesi"
                   fill
                   className="object-cover"

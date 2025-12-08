@@ -34,8 +34,7 @@ export function FavoritesSection() {
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
-      // Calculate single card width (card + gap)
-      const cardWidth = window.innerWidth >= 768 ? 400 : 336; // 96*4=384 + 16 gap or 80*4=320 + 16
+      const cardWidth = 368; // 360px card + 8px gap
       scrollContainerRef.current.scrollBy({
         left: direction === 'left' ? -cardWidth : cardWidth,
         behavior: 'smooth'
@@ -76,7 +75,7 @@ export function FavoritesSection() {
             </Link>
           </div>
         ) : (
-          <div className="relative px-12">
+          <div className="relative max-w-[1270px] mx-auto px-4 md:px-12">
             {/* Left Scroll Button */}
             {favorites.length > 3 && canScrollLeft && (
               <button
@@ -92,14 +91,15 @@ export function FavoritesSection() {
             <div 
               ref={scrollContainerRef}
               onScroll={checkScrollability}
-              className="overflow-x-auto overflow-y-visible pb-8 pt-8 hide-scrollbar scroll-smooth"
+              className="overflow-x-auto overflow-y-visible pb-8 pt-8 hide-scrollbar"
+              style={{scrollBehavior: 'smooth'}}
             >
-              <div className="flex gap-8 md:gap-16 px-2">
+              <div className="flex gap-8 px-2">
                 {favorites.map((product) => (
                   <Link
                     key={product.documentId}
                     href={`/katalog/${product.slug}`}
-                    className="flex-none w-80 md:w-96 group relative rounded-3xl overflow-hidden border border-white/5 transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:border-[#FF6B00] hover:shadow-2xl hover:shadow-[#FF6B00]/20"
+                    className="flex-none w-[360px] group relative rounded-3xl overflow-hidden border border-white/5 transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:border-[#FF6B00] hover:shadow-2xl hover:shadow-[#FF6B00]/20"
                     style={{backgroundColor: 'rgba(25, 28, 45, 0.8)'}}
                   >
                     {/* Kalp - Sağ Üst Köşe */}

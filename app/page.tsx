@@ -4,6 +4,18 @@ import { FavoritesSection } from '@/components/sections/FavoritesSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
 import { getFeaturedProducts } from '@/lib/api';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Ersan Mobilya | Yemek Odası Mobilyaları - Masa, Sandalye, Konsol',
+  description: 'Ersan Mobilya, yemek odası mobilyaları konusunda uzmanlaşmış, kaliteli masa, sandalye ve konsol üretimiyle öne çıkan bir mobilya üreticisidir. Estetik ve dayanıklı tasarımlar.',
+  keywords: ['yemek odası', 'masa', 'sandalye', 'konsol', 'mobilya', 'ersan mobilya', 'kayseri mobilya'],
+  openGraph: {
+    title: 'Ersan Mobilya | Yemek Odası Mobilyaları',
+    description: 'Kaliteli ve estetik yemek odası mobilyaları',
+    type: 'website',
+  },
+};
 
 export default async function Home() {
   // Öne çıkan ürünleri çek
@@ -58,7 +70,7 @@ export default async function Home() {
             </div>
 
             {/* Scroll Indicator */}
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
+            <div className="scroll-indicator">
               <div className="w-6 h-10 border-2 border-white rounded-full flex items-start justify-center p-2">
                 <div className="w-1 h-3 bg-white rounded-full animate-scroll"></div>
               </div>

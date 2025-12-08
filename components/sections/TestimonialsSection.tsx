@@ -7,7 +7,7 @@ const testimonials = [
   {
     id: 1,
     name: 'Ahmet Yılmaz',
-    comment: 'Aldığım yemek masası seti harika! Kaliteli işçilik ve uygun fiyat. Kesinlikle tavsiye ederim.',
+    comment: 'Paris yemek odası setini aldık, gerçekten çok kaliteli. Masanın ahşabı sağlam, sandalyeler rahat. Montaj ekibi de çok nazikti.',
     rating: 5,
     initial: 'A',
     color: 'bg-orange-500'
@@ -15,7 +15,7 @@ const testimonials = [
   {
     id: 2,
     name: 'Ayşe Demir',
-    comment: 'Koltuk takımımız çok şık ve rahat. Evimize çok yakıştı. Ersan Mobilya\'ya teşekkürler!',
+    comment: 'Sandalyelerin kumaşı tam istediğim gibiydi. Hem şık hem rahat. Ailecek çok beğendik.',
     rating: 5,
     initial: 'A',
     color: 'bg-blue-500'
@@ -23,23 +23,23 @@ const testimonials = [
   {
     id: 3,
     name: 'Mehmet Kaya',
-    comment: 'Özel tasarım dolabımız tam istediğim gibi oldu. Ölçülere uygun ve kaliteli üretim.',
+    comment: 'Konsol modeli harika, dekoratif ve işlevsel. Evin girişine çok yakıştı. Teşekkürler Ersan Mobilya.',
     rating: 5,
     initial: 'M',
     color: 'bg-green-500'
   },
   {
     id: 4,
-    name: 'Zeynep Şahin',
-    comment: 'Çalışma masam çok fonksiyonel. Home office için birebir. Hızlı teslimat ve montaj.',
+    name: 'Ömer Can Akgüç',
+    comment: 'Sipariş sürecinden teslimat sürecine kadar her şey mükemmeldi. İletişim çok iyiydi, her sorumu cevapladılar.',
     rating: 5,
-    initial: 'Z',
+    initial: 'Ö',
     color: 'bg-purple-500'
   },
   {
     id: 5,
     name: 'Can Öztürk',
-    comment: 'Yatak odası takımı muhteşem! Kalite ve estetik bir arada. Çok memnun kaldık.',
+    comment: 'Atlas masa takımını aldık. Ahşap işçiliği gerçekten özenli yapılmış, her detay düşünülmüş.',
     rating: 5,
     initial: 'C',
     color: 'bg-red-500'
@@ -47,10 +47,82 @@ const testimonials = [
   {
     id: 6,
     name: 'Elif Arslan',
-    comment: 'TV ünitesi ve sehpa takımı evimize çok yakıştı. Modern tasarım ve sağlam yapı.',
+    comment: 'Yemek masası 6 kişilik tam istediğim ölçüde. Modern tasarımı salonumuza çok uydu.',
     rating: 5,
     initial: 'E',
     color: 'bg-pink-500'
+  },
+  {
+    id: 7,
+    name: 'Eren Kol',
+    comment: 'Fiyat-performans açısından çok iyi. Kaliteli malzeme kullanılmış, yıllarca kullanabiliriz.',
+    rating: 5,
+    initial: 'E',
+    color: 'bg-indigo-500'
+  },
+  {
+    id: 8,
+    name: 'Seda Aydın',
+    comment: 'Sandalyelerin sırtlığı tam ayarında, uzun süre otursan bile rahatsız etmiyor. Çok düşünülmüş.',
+    rating: 5,
+    initial: 'S',
+    color: 'bg-teal-500'
+  },
+  {
+    id: 9,
+    name: 'Emre Yıldız',
+    comment: 'Teslimat çok hızlıydı. Montaj ekibi işini biliyor, kısa sürede kurdular. Profesyonel hizmet.',
+    rating: 5,
+    initial: 'E',
+    color: 'bg-cyan-500'
+  },
+  {
+    id: 10,
+    name: 'Fatma Koç',
+    comment: 'Pera yemek odası tam aradığımız gibiydi. Modern ve şık. Evde misafir ağırlarken çok beğeniliyor.',
+    rating: 5,
+    initial: 'F',
+    color: 'bg-amber-500'
+  },
+  {
+    id: 11,
+    name: 'Mustafa Demircan',
+    comment: 'Masa çok sağlam durmuş, sandalyeler de gayet kaliteli. Çocuklarla kullanıma uygun.',
+    rating: 5,
+    initial: 'M',
+    color: 'bg-lime-500'
+  },
+  {
+    id: 12,
+    name: 'Gizem Öz',
+    comment: 'Renk seçenekleri çok güzeldi, salonumuzun rengine uygun seçim yapabildik. Çok memnunuz.',
+    rating: 5,
+    initial: 'G',
+    color: 'bg-rose-500'
+  },
+  {
+    id: 13,
+    name: 'Hakan Kadıoğlu',
+    comment: 'Konsol modeli çok şık, dar koridora tam uydu. Kalitesi de çok iyi.',
+    rating: 5,
+    initial: 'H',
+    color: 'bg-violet-500'
+  },
+  {
+    id: 14,
+    name: 'Burak Birgül',
+    comment: 'İlk defa bu kadar kaliteli bir mobilya aldık. Gerçekten uzun ömürlü olacağından eminiz.',
+    rating: 5,
+    initial: 'B',
+    color: 'bg-fuchsia-500'
+  },
+  {
+    id: 15,
+    name: 'Ece Yılmaz',
+    comment: 'Müşteri hizmetleri çok ilgiliydi, her aşamada bilgilendirildik. Güler yüzlü ekip, teşekkürler.',
+    rating: 5,
+    initial: 'E',
+    color: 'bg-sky-500'
   },
 ];
 
@@ -163,12 +235,12 @@ export function TestimonialsSection() {
                     ))}
                   </div>
 
-                  <p className="text-gray-300 mb-8 leading-relaxed text-base">
+                  <p className="text-gray-300 mb-8 leading-relaxed text-base min-h-[96px]">
                     "{testimonial.comment}"
                   </p>
 
-                  <div className="flex items-center gap-4">
-                    <div className={`w-14 h-14 ${testimonial.color} rounded-full flex items-center justify-center text-white font-bold text-xl shadow-xl`}>
+                  <div className="flex items-start gap-4">
+                    <div className={`w-14 h-14 flex-shrink-0 ${testimonial.color} rounded-full flex items-center justify-center text-white font-bold text-xl shadow-xl`}>
                       {testimonial.initial}
                     </div>
                     <div>

@@ -78,12 +78,12 @@ export function Header() {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden py-4 border-t bg-white/95 backdrop-blur-md rounded-b-lg">
+          <div className="md:hidden py-4 border-t border-white/10 rounded-b-lg" style={{backgroundColor: 'rgba(25, 28, 45, 0.98)'}}>
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="block py-3 px-4 text-gray-700 hover:bg-gray-100 hover:text-orange-600 font-medium transition-colors"
+                className="block py-3 px-4 text-white hover:bg-[#FF6B00]/10 hover:text-[#FF6B00] font-medium transition-colors border-b border-white/5 last:border-b-0"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {item.name}

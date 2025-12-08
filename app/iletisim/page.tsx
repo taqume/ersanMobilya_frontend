@@ -1,8 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FiMail, FiPhone, FiMapPin, FiSend, FiCheckCircle } from 'react-icons/fi';
-import { useEffect } from 'react';
 import { getContactInfo } from '@/lib/api';
 import type { ContactInfo } from '@/lib/types/strapi';
 
