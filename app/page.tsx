@@ -7,7 +7,7 @@ import { getFeaturedProducts } from '@/lib/api';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Ersan Mobilya | Yemek Odası Mobilyaları - Masa, Sandalye, Konsol',
+  title: 'Ersan Mobilya',
   description: 'Ersan Mobilya, yemek odası mobilyaları konusunda uzmanlaşmış, kaliteli masa, sandalye ve konsol üretimiyle öne çıkan bir mobilya üreticisidir. Estetik ve dayanıklı tasarımlar.',
   keywords: ['yemek odası', 'masa', 'sandalye', 'konsol', 'mobilya', 'ersan mobilya', 'kayseri mobilya'],
   openGraph: {
