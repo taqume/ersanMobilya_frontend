@@ -58,23 +58,25 @@ export function TestimonialsSection() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const scrollPositionRef = useRef(0);
+  const touchStartRef = useRef(0);
+  const lastInteractionRef = useRef(Date.now());
 
   useEffect(() => {
     const scrollContainer = scrollRef.current;
     if (!scrollContainer) return;
 
-    let scrollAmount = 0;
-    const scrollStep = 0.5; // Yavaşlatıldı (1 -> 0.5)
+    const scrollStep = 1.5;
     const scrollDelay = 30;
 
     const autoScroll = () => {
       if (scrollContainer && !isPaused) {
-        scrollAmount += scrollStep;
-        scrollContainer.scrollLeft = scrollAmount;
+        scrollPositionRef.current += scrollStep;
+        scrollContainer.scrollLeft = scrollPositionRef.current;
 
         // Sona gelince başa dön
-        if (scrollAmount >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
-          scrollAmount = 0;
+        if (scrollPositionRef.current >= scrollContainer.scrollWidth - scrollContainer.clientWidth) {
+          scrollPositionRef.current = 0;
         }
       }
     };
@@ -88,52 +90,91 @@ export function TestimonialsSection() {
     };
   }, [isPaused]);
 
-  return (
-    <section className="py-20 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-          backgroundSize: '40px 40px'
-        }}></div>
-      </div>
+  const handleMouseEnter = () => {
+    setIsPaused(true);
+    if (scrollRef.current) {
+      scrollPositionRef.current = scrollRef.current.scrollLeft;
+    }
+  };
 
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">Müşterilerimiz Ne Diyor?</h2>
-          <p className="text-gray-300 text-lg">Binlerce mutlu müşterimizin deneyimlerini okuyun</p>
+  const handleMouseLeave = () => {
+    setIsPaused(false);
+  };
+
+  const handleTouchStart = () => {
+    setIsPaused(true);
+    lastInteractionRef.current = Date.now();
+    if (scrollRef.current) {
+      scrollPositionRef.current = scrollRef.current.scrollLeft;
+    }
+  };
+
+  const handleTouchEnd = () => {
+    // 2 saniye sonra otomatik scroll'a devam et
+    setTimeout(() => {
+      if (Date.now() - lastInteractionRef.current >= 2000) {
+        setIsPaused(false);
+      }
+    }, 2000);
+  };
+
+  const handleScroll = () => {
+    lastInteractionRef.current = Date.now();
+    if (scrollRef.current) {
+      scrollPositionRef.current = scrollRef.current.scrollLeft;
+    }
+  };
+
+  return (
+    <section className="py-20 bg-transparent relative overflow-hidden">
+      <div className="container mx-auto px-4 w-full">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-6xl font-bold mb-6">
+            <span className="text-white">Müşterilerimiz </span>
+            <span className="text-[#FF6B00]">Ne Diyor?</span>
+          </h2>
+          <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+            Binlerce mutlu müşterimizin deneyimlerini okuyun
+          </p>
         </div>
 
         <div 
           ref={scrollRef}
-          className="overflow-x-auto hide-scrollbar"
-          onMouseEnter={() => setIsPaused(true)}
-          onMouseLeave={() => setIsPaused(false)}
+          className="overflow-x-auto hide-scrollbar py-4"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+          onScroll={handleScroll}
         >
-          <div className="flex gap-6 pb-4" style={{ width: 'max-content' }}>
+          <div className="flex gap-6 pb-8" style={{ width: 'max-content' }}>
             {/* Yorumları 2 kez render et (sonsuz scroll efekti için) */}
             {[...testimonials, ...testimonials].map((testimonial, index) => (
               <div
                 key={`${testimonial.id}-${index}`}
-                className="flex-none w-80 bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 shadow-2xl p-6 hover:bg-white/15 transition-all duration-300 hover:-translate-y-2 hover:shadow-orange-500/20"
+                className="flex-none w-80 group relative backdrop-blur-xl rounded-3xl border border-white/5 p-8 transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:border-[#FF6B00] hover:shadow-2xl hover:shadow-[#FF6B00]/20"
+                style={{backgroundColor: 'rgba(25, 28, 45, 0.8)'}}
               >
-                <div className="flex items-center gap-1 mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <FiStar key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                  ))}
-                </div>
-
-                <p className="text-gray-100 mb-6 leading-relaxed">
-                  "{testimonial.comment}"
-                </p>
-
-                <div className="flex items-center gap-3">
-                  <div className={`w-12 h-12 ${testimonial.color} rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg`}>
-                    {testimonial.initial}
+                <div className="relative z-10">
+                  {/* Stars without glow */}
+                  <div className="flex items-center gap-1 mb-6">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <FiStar key={i} className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                    ))}
                   </div>
-                  <div>
-                    <p className="font-semibold text-white">{testimonial.name}</p>
-                    <p className="text-sm text-gray-300">Müşterimiz</p>
+
+                  <p className="text-gray-300 mb-8 leading-relaxed text-base">
+                    "{testimonial.comment}"
+                  </p>
+
+                  <div className="flex items-center gap-4">
+                    <div className={`w-14 h-14 ${testimonial.color} rounded-full flex items-center justify-center text-white font-bold text-xl shadow-xl`}>
+                      {testimonial.initial}
+                    </div>
+                    <div>
+                      <p className="font-bold text-white text-base group-hover:text-[#FF6B00] transition-colors duration-300">{testimonial.name}</p>
+                      <p className="text-sm text-gray-400">Müşterimiz</p>
+                    </div>
                   </div>
                 </div>
               </div>

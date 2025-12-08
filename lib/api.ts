@@ -6,6 +6,7 @@ import type {
   Page,
   ContactInfo,
   StrapiResponse,
+  FeaturedProduct,
 } from './types/strapi';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337';
@@ -94,6 +95,30 @@ export async function getProductsByCategory(categoryId: number): Promise<Product
   } catch (error) {
     console.error('Error fetching products by category:', error);
     return [];
+  }
+}
+
+// Featured Products
+export async function getFeaturedProducts(): Promise<Product[]> {
+  try {
+    const query = buildQuery(['product.images', 'product.category']);
+    const { data } = await api.get<StrapiResponse<FeaturedProduct[]>>(
+      `/featured-products?${query}&sort=order:asc&pagination[limit]=3`
+    );
+    
+    // Eğer featured products yoksa, rastgele 3 ürün döndür
+    if (!data.data || data.data.length === 0) {
+      const products = await getProducts();
+      return products.slice(0, 3);
+    }
+    
+    // Featured products'tan product'ları çıkar
+    return data.data.map(fp => fp.product);
+  } catch (error) {
+    console.error('Error fetching featured products:', error);
+    // Hata durumunda da rastgele ürünler döndür
+    const products = await getProducts();
+    return products.slice(0, 3);
   }
 }
 

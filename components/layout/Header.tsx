@@ -3,24 +3,20 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { FiMenu, FiX, FiHeart } from 'react-icons/fi';
-import { useFavoritesStore } from '@/lib/store/favorites';
+import { FiMenu, FiX } from 'react-icons/fi';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const { favorites, loadFavorites } = useFavoritesStore();
 
   useEffect(() => {
-    loadFavorites();
-
     const handleScroll = () => {
       setScrolled(window.scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [loadFavorites]);
+  }, []);
 
   const navigation = [
     { name: 'Ana Sayfa', href: '/' },
@@ -63,31 +59,10 @@ export function Header() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-600 transition-all duration-200 group-hover:w-full"></span>
               </Link>
             ))}
-
-            {/* Favorites Icon */}
-            <Link
-              href="/favoriler"
-              className="relative flex items-center transition-colors text-white hover:text-red-400"
-            >
-              <FiHeart className="w-6 h-6" />
-              {favorites.length > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
-                  {favorites.length}
-                </span>
-              )}
-            </Link>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center space-x-4">
-            <Link href="/favoriler" className="relative">
-              <FiHeart className={`w-6 h-6 ${scrolled ? 'text-gray-700' : 'text-white'}`} />
-              {favorites.length > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-600 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
-                  {favorites.length}
-                </span>
-              )}
-            </Link>
+          <div className="md:hidden flex items-center">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className={scrolled ? 'text-gray-700' : 'text-white'}

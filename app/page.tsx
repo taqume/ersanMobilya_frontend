@@ -1,14 +1,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { getProducts } from '@/lib/api';
-import { getCloudinaryUrl } from '@/lib/api';
 import { FavoritesSection } from '@/components/sections/FavoritesSection';
 import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
 import { WhatsAppButton } from '@/components/ui/WhatsAppButton';
+import { getFeaturedProducts } from '@/lib/api';
 
 export default async function Home() {
-  // En sevilen ürünleri çek (admin Strapi'den yönetecek)
-  const featuredProducts = await getProducts({ pageSize: 3 });
+  // Öne çıkan ürünleri çek
+  const featuredProducts = await getFeaturedProducts();
 
   return (
     <div className="min-h-screen">
@@ -68,74 +67,76 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* En Sevilenler Section */}
-      <section className="py-20 bg-gradient-to-b from-gray-900 to-gray-800 relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: 'radial-gradient(circle at 2px 2px, white 1px, transparent 0)',
-            backgroundSize: '40px 40px'
-          }}></div>
-        </div>
+      {/* Alt Bölümler Container */}
+      <div style={{backgroundColor: 'rgba(19, 21, 33, 1)'}}>
+        {/* En Sevilenler Section */}
+        <section className="py-20 relative">
+            <div className="container mx-auto px-4">
+              <div className="text-center mb-16">
+                <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                  <span className="text-white">En </span>
+                  <span className="text-[#FF6B00]">Sevilenler</span>
+                </h2>
+                <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+                  Müşterilerimizin en çok tercih ettiği ürünler
+                </p>
+              </div>
 
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">En Sevilenler</h2>
-            <p className="text-gray-300 text-lg">Müşterilerimizin en çok tercih ettiği ürünler</p>
-          </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-16 max-w-7xl mx-auto">
+                {featuredProducts.map((product, index) => {
+                  const firstImage = product.images?.[0];
+                  // Cloudinary URL'i zaten tam URL, diğer durumlarda API URL ekle
+                  const imageUrl = firstImage?.url 
+                    ? (firstImage.url.startsWith('http') 
+                        ? firstImage.url 
+                        : `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337'}${firstImage.url}`)
+                    : '/hero-bg.png';
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {featuredProducts.map((product) => (
-              <Link
-                key={product.id}
-                href={`/urun/${product.slug}`}
-                className="group bg-white/10 backdrop-blur-lg rounded-2xl border border-white/20 shadow-2xl hover:bg-white/15 transition-all duration-300 overflow-hidden hover:-translate-y-2 hover:shadow-orange-500/20"
-              >
-                <div className="aspect-square relative overflow-hidden">
-                  {product.images && product.images.length > 0 ? (
-                    <Image
-                      src={getCloudinaryUrl(product.images[0].url, { width: 800, height: 800, quality: 90 })}
-                      alt={product.name}
-                      fill
-                      className="object-cover group-hover:scale-110 transition duration-500"
-                    />
-                  ) : (
-                    <div className="w-full h-full bg-gray-800 flex items-center justify-center">
-                      <span className="text-gray-600 text-6xl">🪑</span>
-                    </div>
-                  )}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-orange-400 transition">
-                    {product.name}
-                  </h3>
-                  {product.description && (
-                    <p className="text-gray-300 text-sm line-clamp-2 mb-4">
-                      {product.description}
-                    </p>
-                  )}
-                  {product.price && (
-                    <p className="text-2xl font-bold text-orange-400">
-                      {new Intl.NumberFormat('tr-TR', { 
-                        style: 'currency', 
-                        currency: 'TRY',
-                        minimumFractionDigits: 0
-                      }).format(product.price)}
-                    </p>
-                  )}
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
+                  return (
+                    <Link 
+                      key={product.documentId}
+                      href={`/katalog/${product.slug}`}
+                      className="group relative rounded-3xl overflow-hidden border border-white/5 transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:border-[#FF6B00] hover:shadow-2xl hover:shadow-[#FF6B00]/20" 
+                      style={{backgroundColor: 'rgba(25, 28, 45, 0.8)'}}
+                    >
+                      {/* Yıldız - Sağ Üst Köşe */}
+                      <div className="absolute top-4 right-4 z-20">
+                        <svg className="w-12 h-12 text-yellow-400 fill-yellow-400 animate-star-pulse drop-shadow-lg" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      </div>
 
-      {/* Favorilerim Section */}
-      <FavoritesSection />
+                      {/* Full Image with Overlay */}
+                      <div className="aspect-[3/2] relative overflow-hidden">
+                        <Image
+                          src={imageUrl}
+                          alt={product.name}
+                          fill
+                          className="object-cover group-hover:scale-110 transition-transform duration-700"
+                        />
+                        {/* Gradient Overlay */}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+                        
+                        {/* Text on Image */}
+                        <div className="absolute bottom-0 left-0 right-0 p-6">
+                          <h3 className="text-3xl font-bold text-white group-hover:text-[#FF6B00] transition-colors duration-300 drop-shadow-lg">
+                            {product.name}
+                          </h3>
+                        </div>
+                      </div>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+        </section>
 
-      {/* Müşterilerimiz Ne Diyor Section */}
-      <TestimonialsSection />
+        {/* Favorilerim Section */}
+        <FavoritesSection />
+
+        {/* Müşterilerimiz Ne Diyor Section */}
+        <TestimonialsSection />
+      </div>
 
       {/* WhatsApp Floating Button */}
       <WhatsAppButton phoneNumber="+905384753781" />

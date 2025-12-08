@@ -71,6 +71,16 @@ export interface Product {
   publishedAt: string;
 }
 
+export interface FeaturedProduct {
+  id: number;
+  documentId: string;
+  order: number;
+  product: Product;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+}
+
 export interface Page {
   id: number;
   documentId: string;

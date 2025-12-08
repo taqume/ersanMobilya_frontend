@@ -10,6 +10,10 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // Disable source maps in production
+  productionBrowserSourceMaps: false,
+  // Empty turbopack config to silence the warning
+  turbopack: {},
 };
 
 export default nextConfig;
