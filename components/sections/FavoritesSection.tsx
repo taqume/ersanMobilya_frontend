@@ -34,13 +34,36 @@ export function FavoritesSection() {
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollContainerRef.current) {
+      const container = scrollContainerRef.current;
       const cardWidth = 368; // 360px card + 8px gap
-      scrollContainerRef.current.scrollBy({
-        left: direction === 'left' ? -cardWidth : cardWidth,
-        behavior: 'smooth'
-      });
+      const targetScroll = container.scrollLeft + (direction === 'left' ? -cardWidth : cardWidth);
       
-      setTimeout(checkScrollability, 300);
+      // Smooth scroll with custom animation
+      const startScroll = container.scrollLeft;
+      const distance = targetScroll - startScroll;
+      const duration = 500; // 500ms animation
+      let startTime: number | null = null;
+
+      const animateScroll = (currentTime: number) => {
+        if (startTime === null) startTime = currentTime;
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Easing function (ease-in-out)
+        const easeInOutQuad = progress < 0.5
+          ? 2 * progress * progress
+          : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+        
+        container.scrollLeft = startScroll + distance * easeInOutQuad;
+        
+        if (progress < 1) {
+          requestAnimationFrame(animateScroll);
+        } else {
+          checkScrollability();
+        }
+      };
+      
+      requestAnimationFrame(animateScroll);
     }
   };
 
@@ -92,7 +115,6 @@ export function FavoritesSection() {
               ref={scrollContainerRef}
               onScroll={checkScrollability}
               className="overflow-x-auto overflow-y-visible pb-8 pt-8 hide-scrollbar"
-              style={{scrollBehavior: 'smooth'}}
             >
               <div className="flex gap-8 px-2">
                 {favorites.map((product) => (

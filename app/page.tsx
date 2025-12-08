@@ -68,13 +68,13 @@ export default async function Home() {
                 Hakkımızda
               </Link>
             </div>
+          </div>
+        </div>
 
-            {/* Scroll Indicator */}
-            <div className="scroll-indicator">
-              <div className="w-6 h-10 border-2 border-white rounded-full flex items-start justify-center p-2">
-                <div className="w-1 h-3 bg-white rounded-full animate-scroll"></div>
-              </div>
-            </div>
+        {/* Scroll Indicator */}
+        <div className="scroll-indicator">
+          <div className="w-6 h-10 border-2 border-white rounded-full flex items-start justify-center p-2">
+            <div className="w-1 h-3 bg-white rounded-full animate-scroll"></div>
           </div>
         </div>
       </section>

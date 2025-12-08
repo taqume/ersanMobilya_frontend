@@ -118,6 +118,15 @@ body {
   animation: heart-beat 1.5s ease-in-out infinite;
 }
 
+/* Scroll Indicator - Fixed positioning */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: bounce 1s infinite;
+}
+
 /* Glassmorphism utility */
 .glass {
   background: rgba(255, 255, 255, 0.1);
