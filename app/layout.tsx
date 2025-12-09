@@ -12,10 +12,24 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: 'Ersan Mobilya',
+  title: 'Ersan Mobilya | Yemek Odası Mobilyaları',
   description:
-    'Ersan Mobilya, özel tasarım ve kaliteli mobilya üretimi konusunda uzmanlaşmış bir üretim atölyesidir.',
-  keywords: ['mobilya', 'özel tasarım mobilya', 'masa', 'koltuk', 'dolap'],
+    'Kaliteli ve estetik yemek odası mobilyaları - Özel tasarım masa, sandalye ve konsol üretimi. Ersan Mobilya, yemek odası mobilyaları konusunda uzmanlaşmış bir üretim atölyesidir.',
+  keywords: ['yemek odası', 'masa', 'sandalye', 'konsol', 'mobilya', 'ersan mobilya', 'özel tasarım'],
+  openGraph: {
+    type: 'website',
+    locale: 'tr_TR',
+    url: 'https://ersanmobilya.vercel.app',
+    siteName: 'Ersan Mobilya',
+    title: 'Ersan Mobilya | Yemek Odası Mobilyaları',
+    description: 'Kaliteli ve estetik yemek odası mobilyaları - Özel tasarım masa, sandalye ve konsol üretimi',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Ersan Mobilya | Yemek Odası Mobilyaları',
+    description: 'Kaliteli ve estetik yemek odası mobilyaları',
+  },
+  metadataBase: new URL('https://ersanmobilya.vercel.app'),
 };
 
 export default function RootLayout({
