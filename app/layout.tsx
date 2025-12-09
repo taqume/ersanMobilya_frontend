@@ -16,11 +16,6 @@ export const metadata: Metadata = {
   description:
     'Ersan Mobilya, özel tasarım ve kaliteli mobilya üretimi konusunda uzmanlaşmış bir üretim atölyesidir.',
   keywords: ['mobilya', 'özel tasarım mobilya', 'masa', 'koltuk', 'dolap'],
-  icons: {
-    icon: '/header_logo.png',
-    shortcut: '/header_logo.png',
-    apple: '/header_logo.png',
-  },
 };
 
 export default function RootLayout({
