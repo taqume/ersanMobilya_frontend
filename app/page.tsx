@@ -17,6 +17,9 @@ export const metadata: Metadata = {
   },
 };
 
+// ISR: Her 1 saatte bir revalidate (3600 saniye)
+export const revalidate = 3600;
+
 export default async function Home() {
   // Öne çıkan ürünleri çek
   const featuredProducts = await getFeaturedProducts();

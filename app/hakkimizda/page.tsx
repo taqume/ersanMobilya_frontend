@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   keywords: ['ersan mobilya hakkında', 'mobilya üreticisi', 'firma bilgileri'],
 };
 
+// ISR: Her 1 saatte bir revalidate (3600 saniye)
+export const revalidate = 3600;
+
 export default function HakkimizdaPage() {
   return (
     <div className="min-h-screen pt-24" style={{backgroundColor: 'rgba(19, 21, 33, 1)'}}>

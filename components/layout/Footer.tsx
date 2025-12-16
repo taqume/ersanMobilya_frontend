@@ -2,18 +2,15 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
-import { getContactInfo } from '@/lib/api';
 import type { ContactInfo } from '@/lib/types/strapi';
 
-export function Footer() {
-  const currentYear = new Date().getFullYear();
-  const [contactInfo, setContactInfo] = useState<ContactInfo | null>(null);
+interface FooterProps {
+  contactInfo: ContactInfo | null;
+}
 
-  useEffect(() => {
-    getContactInfo().then(setContactInfo);
-  }, []);
+export function Footer({ contactInfo }: FooterProps) {
+  const currentYear = new Date().getFullYear();
 
   return (
     <footer className="text-gray-400 border-t border-white/5" style={{backgroundColor: 'rgba(15, 17, 28, 1)'}}>

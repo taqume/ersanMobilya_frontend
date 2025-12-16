@@ -5,6 +5,7 @@ import { ReactQueryProvider } from '@/components/providers/ReactQueryProvider';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { Toaster } from 'sonner';
+import { getContactInfo } from '@/lib/api';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -32,18 +33,20 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://ersanmobilya.vercel.app'),
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const contactInfo = await getContactInfo();
+
   return (
     <html lang="tr">
       <body className={`${inter.className} antialiased`}>
         <ReactQueryProvider>
           <Header />
           <main className="min-h-screen">{children}</main>
-          <Footer />
+          <Footer contactInfo={contactInfo} />
           <Toaster position="top-center" richColors />
         </ReactQueryProvider>
       </body>

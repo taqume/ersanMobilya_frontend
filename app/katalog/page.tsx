@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   keywords: ['yemek odası katalog', 'mobilya modelleri', 'masa modelleri', 'sandalye çeşitleri'],
 };
 
+// ISR: Her 1 saatte bir revalidate (3600 saniye)
+export const revalidate = 3600;
+
 export default async function KatalogPage() {
   const categories = await getCategories();
 

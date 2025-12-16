@@ -1,9 +1,21 @@
-import { getProductBySlug } from '@/lib/api';
+import { getProductBySlug, getProducts } from '@/lib/api';
 import { notFound } from 'next/navigation';
 import ProductDetailClient from './ProductDetailClient';
 import type { Metadata } from 'next';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337';
+
+// ISR: Her 1 saatte bir revalidate (3600 saniye)
+export const revalidate = 3600;
+
+// Build time'da tüm ürünleri static olarak oluştur
+export async function generateStaticParams() {
+  const products = await getProducts();
+  
+  return products.map((product) => ({
+    slug: product.slug,
+  }));
+}
 
 interface ProductDetailPageProps {
   params: Promise<{
