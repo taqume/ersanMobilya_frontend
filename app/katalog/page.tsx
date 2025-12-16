@@ -4,7 +4,7 @@ import { getCategories } from '@/lib/api';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Katalog | Ersan Mobilya - Yemek Odası Koleksiyonları',
+  title: 'Ersan Mobilya | Katalog',
   description: 'Ersan Mobilya yemek odası katalogunu inceleyin. Modern ve klasik tasarımlardan oluşan geniş ürün yelpazemizi keşfedin.',
   keywords: ['yemek odası katalog', 'mobilya modelleri', 'masa modelleri', 'sandalye çeşitleri'],
 };

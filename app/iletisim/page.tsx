@@ -4,7 +4,7 @@ import { ContactForm } from './ContactForm';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'İletişim | Ersan Mobilya',
+  title: 'Ersan Mobilya | İletişim',
   description: 'Ersan Mobilya ile iletişime geçin. Sorularınız için bize ulaşın.',
 };
 

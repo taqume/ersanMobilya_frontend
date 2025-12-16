@@ -3,7 +3,7 @@ import { FiAward, FiHeart, FiTrendingUp, FiUsers } from 'react-icons/fi';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Hakkımızda | Ersan Mobilya - Hikayemiz ve Değerlerimiz',
+  title: 'Ersan Mobilya | Hakkımızda',
   description: 'Ersan Mobilya, yıllardır yemek odası mobilyaları üretiminde uzmanlaşmış, kalite ve estetik anlayışıyla öne çıkan bir mobilya üreticisidir.',
   keywords: ['ersan mobilya hakkında', 'mobilya üreticisi', 'firma bilgileri'],
 };

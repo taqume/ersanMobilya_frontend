@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: 'Ersan Mobilya, yemek odası mobilyaları konusunda uzmanlaşmış, kaliteli masa, sandalye ve konsol üretimiyle öne çıkan bir mobilya üreticisidir. Estetik ve dayanıklı tasarımlar.',
   keywords: ['yemek odası', 'masa', 'sandalye', 'konsol', 'mobilya', 'ersan mobilya', 'kayseri mobilya'],
   openGraph: {
-    title: 'Ersan Mobilya | Yemek Odası Mobilyaları',
+    title: 'Ersan Mobilya',
     description: 'Kaliteli ve estetik yemek odası mobilyaları',
     type: 'website',
   },

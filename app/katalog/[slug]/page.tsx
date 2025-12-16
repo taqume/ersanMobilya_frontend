@@ -29,12 +29,12 @@ export async function generateMetadata({ params }: ProductDetailPageProps): Prom
 
   if (!product) {
     return {
-      title: 'Ürün Bulunamadı | Ersan Mobilya',
+      title: 'Ersan Mobilya | Ürün Bulunamadı',
     };
   }
 
   return {
-    title: `${product.name} | Ersan Mobilya`,
+    title: `Ersan Mobilya | ${product.name}`,
     description: `${product.name} - Ersan Mobilya yemek odası koleksiyonundan kaliteli ve estetik mobilya.`,
     keywords: [product.name, 'yemek odası', product.category?.name || '', 'ersan mobilya'],
   };
