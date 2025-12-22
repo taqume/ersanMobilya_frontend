@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'tr_TR',
-    url: 'https://ersanmobilya.vercel.app',
+    url: 'https://www.ersanmobilya.com',
     siteName: 'Ersan Mobilya',
     title: 'Ersan Mobilya | Yemek Odası Mobilyaları',
     description: 'Kaliteli ve estetik yemek odası mobilyaları - Özel tasarım masa, sandalye ve konsol üretimi',
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     title: 'Ersan Mobilya | Yemek Odası Mobilyaları',
     description: 'Kaliteli ve estetik yemek odası mobilyaları',
   },
-  metadataBase: new URL('https://ersanmobilya.vercel.app'),
+  metadataBase: new URL('https://www.ersanmobilya.com'),
 };
 
 export default async function RootLayout({
