@@ -17,6 +17,17 @@ export const metadata: Metadata = {
   description:
     'Kaliteli ve estetik yemek odası mobilyaları - Özel tasarım masa, sandalye ve konsol üretimi. Ersan Mobilya, yemek odası mobilyaları konusunda uzmanlaşmış bir üretim atölyesidir.',
   keywords: ['yemek odası', 'masa', 'sandalye', 'konsol', 'mobilya', 'ersan mobilya', 'özel tasarım'],
+  icons: {
+    icon: [
+      { url: '/icon.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon.png', sizes: '16x16', type: 'image/png' },
+      { url: '/icon.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon.png', sizes: '512x512', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: '/apple-icon.png',
+  },
+  manifest: '/manifest.json',
   openGraph: {
     type: 'website',
     locale: 'tr_TR',
